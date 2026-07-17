@@ -1,10 +1,8 @@
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
-  const motionImages = Array.from(document.querySelectorAll<HTMLImageElement>('[data-motion-image]'));
 
   const reveal = (element: HTMLElement) => {
-    element.dataset.revealed = 'true';
     element.classList.remove('reveal-pending');
   };
 
@@ -19,10 +17,10 @@
           observer.unobserve(element);
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
     );
 
-    const initialRevealLine = window.innerHeight * 0.9;
+    const initialRevealLine = window.innerHeight * 0.94;
 
     revealElements.forEach((element) => {
       if (element.getBoundingClientRect().top <= initialRevealLine) {
@@ -36,21 +34,4 @@
   } else {
     revealElements.forEach(reveal);
   }
-
-  motionImages.forEach((image) => {
-    if (reduceMotion.matches || image.complete) {
-      image.dataset.loaded = 'true';
-      return;
-    }
-
-    image.classList.add('motion-image-pending');
-    image.addEventListener(
-      'load',
-      () => {
-        image.dataset.loaded = 'true';
-        image.classList.remove('motion-image-pending');
-      },
-      { once: true },
-    );
-  });
 </script>

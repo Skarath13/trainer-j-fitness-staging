@@ -141,8 +141,11 @@ const faqs = [
         <div class="transformation-list">
           {
             transformations.slice(0, 1).map((result, index) => (
-              <article class:list={['transformation-card', { 'transformation-card-reverse': index % 2 === 1 }]}>
-                <figure class="transformation-figure" data-reveal="left">
+              <article
+                class:list={['transformation-card', { 'transformation-card-reverse': index % 2 === 1 }]}
+                data-reveal
+              >
+                <figure class="transformation-figure">
                   <figcaption class="transformation-dates">
                     <span>Before <strong>· {result.before}</strong></span>
                     <span>After <strong>· {result.after}</strong></span>
@@ -155,10 +158,9 @@ const faqs = [
                     sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) calc(100vw - 48px), 50vw"
                     loading="lazy"
                     format="webp"
-                    data-motion-image
                   />
                 </figure>
-                <div class="transformation-copy" data-reveal="right" style="--reveal-delay: 70ms">
+                <div class="transformation-copy">
                   <h3>{result.title}</h3>
                   <blockquote>
                     <p>“{result.quote}”</p>
@@ -187,15 +189,10 @@ const faqs = [
           invert={true}
         />
 
-        <div class="program-grid">
+        <div class="program-grid" data-reveal>
           {
-            programs.map((program, index) => (
-              <article
-                class="program-card"
-                data-reveal="up"
-                data-reveal-order={index}
-                style={`--reveal-delay: ${index * 60}ms`}
-              >
+            programs.map((program) => (
+              <article class="program-card">
                 <span class="program-icon"><Icon name={program.icon} /></span>
                 <h3>{program.title}</h3>
                 <p class="program-hook">{program.hook}</p>
@@ -218,8 +215,11 @@ const faqs = [
         <div class="transformation-list">
           {
             transformations.slice(1).map((result, index) => (
-              <article class:list={['transformation-card', { 'transformation-card-reverse': index % 2 === 0 }]}>
-                <figure class="transformation-figure" data-reveal={index % 2 === 0 ? 'right' : 'left'}>
+              <article
+                class:list={['transformation-card', { 'transformation-card-reverse': index % 2 === 0 }]}
+                data-reveal
+              >
+                <figure class="transformation-figure">
                   <figcaption class="transformation-dates">
                     <span>Before <strong>· {result.before}</strong></span>
                     <span>After <strong>· {result.after}</strong></span>
@@ -232,14 +232,9 @@ const faqs = [
                     sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 900px) calc(100vw - 48px), 50vw"
                     loading="lazy"
                     format="webp"
-                    data-motion-image
                   />
                 </figure>
-                <div
-                  class="transformation-copy"
-                  data-reveal={index % 2 === 0 ? 'left' : 'right'}
-                  style="--reveal-delay: 70ms"
-                >
+                <div class="transformation-copy">
                   <h3>{result.title}</h3>
                   <blockquote>
                     <p>“{result.quote}”</p>
@@ -257,21 +252,21 @@ const faqs = [
           }
         </div>
 
-        <p class="results-note" data-reveal="up">
+        <p class="results-note">
           Every person responds differently. These stories describe individual experiences, not guaranteed results. Exercise coaching is not medical treatment.
         </p>
       </div>
     </section>
 
     <section class="section about-section" id="about">
-      <div class="shell about-layout">
+      <div class="shell about-layout" data-reveal>
         <div class="about-copy">
           <SectionHeading
             title="A coach should push you and pay attention."
             intro="Jacob has a master's degree in exercise science and an ACE personal training certification. He pays attention to how you move, explains what matters, and adjusts the plan when your body or your week changes."
             align="left"
           />
-          <p data-reveal="up" style="--reveal-delay: 60ms">
+          <p>
             You will be pushed, but you will also be heard. That balance matters when you are new to training, returning after time away, or carrying a history that makes exercise feel uncertain.
           </p>
           <a
@@ -279,14 +274,12 @@ const faqs = [
             href={bookingUrl}
             target="_blank"
             rel="noreferrer"
-            data-reveal="up"
-            style="--reveal-delay: 120ms"
           >
             Meet Jacob for 30 minutes
           </a>
         </div>
 
-        <dl class="credential-panel" data-reveal="right" style="--reveal-delay: 80ms">
+        <dl class="credential-panel">
           <div>
             <dt><Icon name="school" /><span>Master's in Exercise Science</span></dt>
             <dd>Graduate-level study in biomechanics and program design.</dd>
@@ -311,23 +304,23 @@ const faqs = [
           invert={true}
         />
 
-        <ol class="process-list">
-          <li data-reveal="up" data-reveal-order="0">
+        <ol class="process-list" data-reveal>
+          <li>
             <span>1</span>
             <h3>Talk honestly</h3>
             <p>Share your goals, history, concerns, and schedule. No pressure and no need to have it all figured out.</p>
           </li>
-          <li data-reveal="up" data-reveal-order="1" style="--reveal-delay: 60ms">
+          <li>
             <span>2</span>
             <h3>See how you move</h3>
             <p>A practical movement assessment helps Jacob understand where to begin and what deserves extra care.</p>
           </li>
-          <li data-reveal="up" data-reveal-order="2" style="--reveal-delay: 120ms">
+          <li>
             <span>3</span>
             <h3>Build your plan</h3>
             <p>Your program reflects your current ability, your real week, and the progress you want to feel outside the gym.</p>
           </li>
-          <li data-reveal="up" data-reveal-order="3" style="--reveal-delay: 180ms">
+          <li>
             <span>4</span>
             <h3>Keep adjusting</h3>
             <p>You train, learn, and build momentum. If your schedule or body changes, the plan changes with you.</p>
@@ -343,15 +336,10 @@ const faqs = [
           intro="They remember being listened to, being challenged without being ignored, and finding a way to keep going."
         />
 
-        <div class="voice-grid">
+        <div class="voice-grid" data-reveal>
           {
-            voices.map((voice, index) => (
-              <figure
-                class="voice-card"
-                data-reveal="up"
-                data-reveal-order={index}
-                style={`--reveal-delay: ${index * 60}ms`}
-              >
+            voices.map((voice) => (
+              <figure class="voice-card">
                 <blockquote>“{voice.quote}”</blockquote>
                 <figcaption>
                   <strong>{voice.name}</strong>
@@ -365,14 +353,14 @@ const faqs = [
     </section>
 
     <section class="section faq-section" id="faq">
-      <div class="shell faq-layout">
+      <div class="shell faq-layout" data-reveal>
         <SectionHeading
           title="Questions before you start."
           intro="You are allowed to be unsure. Here are a few honest answers before you reach out."
           align="left"
         />
 
-        <div class="faq-list" data-reveal="up" style="--reveal-delay: 70ms">
+        <div class="faq-list">
           {
             faqs.map((item, index) => (
               <details class="faq-item" open={index === 0}>
@@ -386,8 +374,8 @@ const faqs = [
     </section>
 
     <section class="section contact-section" id="contact">
-      <div class="shell contact-layout">
-        <div class="contact-copy" data-reveal="left">
+      <div class="shell contact-layout" data-reveal>
+        <div class="contact-copy">
           <h2>Not sure you are ready? Let’s talk anyway.</h2>
           <p>
             You do not need the perfect goal or the right words. Tell Jacob what has been getting in the way. He will listen and help you decide whether coaching makes sense.
@@ -403,8 +391,6 @@ const faqs = [
           action={withBase('thanks/')}
           data-netlify={isStaging ? undefined : 'true'}
           netlify-honeypot={isStaging ? undefined : 'bot-field'}
-          data-reveal="right"
-          style="--reveal-delay: 80ms"
         >
           <input type="hidden" name="form-name" value="contact" />
           <p class="honeypot" aria-hidden="true">
@@ -455,11 +441,11 @@ const faqs = [
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <div data-reveal="up">
+      <div>
         <a class="footer-brand" href={withBase()}>Trainer J Fitness</a>
         <p>Strength coaching with care in Orange County, California.</p>
       </div>
-      <nav aria-label="Footer" data-reveal="up" style="--reveal-delay: 60ms">
+      <nav aria-label="Footer">
         <a href="mailto:Jacob@TrainerJFitness.com"><Icon name="mail" /><span>Email Jacob</span></a>
         <a href="https://instagram.com/trainerj.cpt" target="_blank" rel="noreferrer">
           <Icon name="brand-instagram" /><span>Instagram</span>

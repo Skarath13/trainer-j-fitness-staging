@@ -53,12 +53,6 @@ const homeUrl = withBase();
       toggle.setAttribute('aria-expanded', 'false');
     };
 
-    const syncHeaderState = () => {
-      header.dataset.scrolled = String(window.scrollY > 12);
-    };
-
-    let scrollFrame = 0;
-
     toggle.addEventListener('click', () => {
       const isOpen = toggle.getAttribute('aria-expanded') === 'true';
       header.dataset.open = String(!isOpen);
@@ -74,20 +68,6 @@ const homeUrl = withBase();
       toggle.focus();
     });
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (scrollFrame) return;
-
-        scrollFrame = window.requestAnimationFrame(() => {
-          syncHeaderState();
-          scrollFrame = 0;
-        });
-      },
-      { passive: true },
-    );
-
     window.matchMedia('(min-width: 901px)').addEventListener('change', closeMenu);
-    syncHeaderState();
   }
 </script>
