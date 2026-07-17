@@ -78,6 +78,29 @@ const schema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <script is:inline>
+      (() => {
+        const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
+        const isReload = navigationEntry?.type === 'reload';
+
+        if (!isReload || window.location.hash) return;
+
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+        const resetScroll = () => {
+          document.documentElement.scrollTop = 0;
+          if (document.body) document.body.scrollTop = 0;
+        };
+
+        resetScroll();
+        window.addEventListener('pageshow', () => requestAnimationFrame(resetScroll), { once: true });
+        window.addEventListener(
+          'load',
+          () => requestAnimationFrame(() => requestAnimationFrame(resetScroll)),
+          { once: true },
+        );
+      })();
+    </script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     <title>{title}</title>
   </head>
