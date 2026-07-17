@@ -357,6 +357,12 @@ summary {
   }
 }
 
+@keyframes hero-image-compact-enter {
+  from {
+    opacity: 0;
+  }
+}
+
 @keyframes hero-line-enter {
   from {
     opacity: 0.18;
@@ -1938,6 +1944,11 @@ summary {
   .hero,
   .hero-inner {
     min-height: 100svh;
+  }
+
+  .hero-background-image {
+    bottom: -1.5rem;
+    animation: hero-image-compact-enter 760ms ease-out 120ms both;
   }
 
   .hero h1 {
