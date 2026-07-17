@@ -1756,7 +1756,7 @@ summary {
 
   .hero-background-image {
     right: -1rem;
-    bottom: -0.5rem;
+    bottom: -0.9rem;
     width: min(74vw, 360px);
     filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.22)) saturate(1.08) contrast(1.01) brightness(1.18);
   }
