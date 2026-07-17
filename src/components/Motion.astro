@@ -1,0 +1,56 @@
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+  const motionImages = Array.from(document.querySelectorAll<HTMLImageElement>('[data-motion-image]'));
+
+  const reveal = (element: HTMLElement) => {
+    element.dataset.revealed = 'true';
+    element.classList.remove('reveal-pending');
+  };
+
+  if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const element = entry.target as HTMLElement;
+          reveal(element);
+          observer.unobserve(element);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    const initialRevealLine = window.innerHeight * 0.9;
+
+    revealElements.forEach((element) => {
+      if (element.getBoundingClientRect().top <= initialRevealLine) {
+        reveal(element);
+        return;
+      }
+
+      element.classList.add('reveal-pending');
+      observer.observe(element);
+    });
+  } else {
+    revealElements.forEach(reveal);
+  }
+
+  motionImages.forEach((image) => {
+    if (reduceMotion.matches || image.complete) {
+      image.dataset.loaded = 'true';
+      return;
+    }
+
+    image.classList.add('motion-image-pending');
+    image.addEventListener(
+      'load',
+      () => {
+        image.dataset.loaded = 'true';
+        image.classList.remove('motion-image-pending');
+      },
+      { once: true },
+    );
+  });
+</script>

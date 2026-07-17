@@ -12,7 +12,7 @@ import { isStaging, withBase } from '../utils/paths';
 >
   <Header />
   <main class="message-page" id="main-content">
-    <div class="shell message-card">
+    <div class="shell message-card" data-page-enter>
       <h1>{isStaging ? 'Form preview complete.' : 'Your message is in.'}</h1>
       <p>
         {isStaging

@@ -2,6 +2,7 @@
 import '@fontsource-variable/archivo/wght.css';
 import '@fontsource-variable/manrope/wght.css';
 import '../styles/global.css';
+import Motion from '../components/Motion.astro';
 import { isStaging, withBase } from '../utils/paths';
 
 interface Props {
@@ -79,5 +80,6 @@ const schema = {
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <slot />
+    <Motion />
   </body>
 </html>
