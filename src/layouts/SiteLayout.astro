@@ -81,24 +81,46 @@ const schema = {
     <script is:inline>
       (() => {
         const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
-        const isReload = navigationEntry?.type === 'reload';
+        const isHistoryNavigation = navigationEntry?.type === 'back_forward';
 
-        if (!isReload || window.location.hash) return;
+        if (isHistoryNavigation || window.location.hash) return;
 
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
+        const root = document.documentElement;
         const resetScroll = () => {
-          document.documentElement.scrollTop = 0;
+          window.scrollTo(0, 0);
+          root.scrollTop = 0;
           if (document.body) document.body.scrollTop = 0;
         };
 
+        root.style.scrollBehavior = 'auto';
+        root.style.overflowAnchor = 'none';
         resetScroll();
-        window.addEventListener('pageshow', () => requestAnimationFrame(resetScroll), { once: true });
-        window.addEventListener(
-          'load',
-          () => requestAnimationFrame(() => requestAnimationFrame(resetScroll)),
-          { once: true },
-        );
+
+        let settleStarted = false;
+        const settleAtTop = () => {
+          if (settleStarted) {
+            resetScroll();
+            return;
+          }
+
+          settleStarted = true;
+          resetScroll();
+          requestAnimationFrame(() => requestAnimationFrame(resetScroll));
+          [80, 220, 480, 800].forEach((delay) => window.setTimeout(resetScroll, delay));
+
+          window.setTimeout(() => {
+            root.style.removeProperty('scroll-behavior');
+            root.style.removeProperty('overflow-anchor');
+            if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+          }, 900);
+        };
+
+        window.addEventListener('pageshow', (event) => {
+          if (!event.persisted) settleAtTop();
+        }, { once: true });
+        window.addEventListener('load', settleAtTop, { once: true });
       })();
     </script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
