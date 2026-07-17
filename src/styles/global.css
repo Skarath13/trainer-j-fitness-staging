@@ -1,5 +1,6 @@
 :root {
   --ink: #071522;
+  --chrome: #0a2135;
   --ink-soft: #0d2032;
   --ink-raised: #132a40;
   --blue: #1f6aa5;
@@ -33,7 +34,7 @@
 
 html {
   min-height: 100%;
-  background: var(--ink);
+  background: var(--chrome);
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 24px);
 }
@@ -41,7 +42,7 @@ html {
 body {
   min-height: 100svh;
   margin: 0;
-  background: var(--ink);
+  background: var(--chrome);
   color: var(--text);
   font-family: 'Manrope Variable', 'Segoe UI', sans-serif;
   font-size: 1rem;
@@ -540,7 +541,7 @@ summary {
   left: 0;
   height: var(--header-height);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(7, 21, 34, 0.9);
+  background: rgba(10, 33, 53, 0.96);
   color: var(--white);
   backdrop-filter: blur(18px);
 }
@@ -1599,7 +1600,7 @@ summary {
     align-items: stretch;
     padding: 1.25rem 24px 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: var(--ink);
+    background: var(--chrome);
     box-shadow: 0 30px 50px rgba(0, 0, 0, 0.28);
     flex-direction: column;
     opacity: 0;
