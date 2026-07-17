@@ -54,8 +54,13 @@ const schema = {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#071522" />
+    <meta name="color-scheme" content="light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Trainer J Fitness" />
     <meta name="description" content={description} />
     {isStaging && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" href={withBase('favicon.ico')} sizes="any" />

@@ -12,7 +12,10 @@
   --line: rgba(18, 33, 48, 0.14);
   --white: #ffffff;
   --max-width: 1180px;
-  --header-height: 76px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --header-base-height: 76px;
+  --header-height: calc(var(--header-base-height) + var(--safe-area-top));
   --radius-small: 10px;
   --radius-medium: 18px;
   --shadow: 0 30px 80px rgba(2, 15, 27, 0.16);
@@ -29,11 +32,15 @@
 }
 
 html {
+  min-height: 100%;
+  background: var(--ink);
+  color-scheme: light;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 24px);
 }
 
 body {
+  min-height: 100svh;
   margin: 0;
   background: var(--paper);
   color: var(--text);
@@ -545,6 +552,7 @@ summary {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  padding-top: var(--safe-area-top);
 }
 
 .brand {
@@ -1383,6 +1391,7 @@ summary {
 
 .site-footer {
   padding-block: 3rem;
+  padding-bottom: calc(3rem + var(--safe-area-bottom));
   background: #030d15;
   color: var(--white);
 }
@@ -1572,7 +1581,7 @@ summary {
 
 @media (max-width: 900px) {
   :root {
-    --header-height: 70px;
+    --header-base-height: 70px;
   }
 
   .menu-toggle {
