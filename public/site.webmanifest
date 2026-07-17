@@ -4,8 +4,8 @@
   "description": "Personal training and coaching with Jacob Hernandez in Orange County, California.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#123A59",
-  "theme_color": "#123A59",
+  "background_color": "#174C70",
+  "theme_color": "#174C70",
   "icons": [
     {
       "src": "icon-192.png",

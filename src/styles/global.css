@@ -1,9 +1,12 @@
 :root {
   --ink: #071522;
-  --chrome: #123a59;
+  --chrome: #174c70;
   --chrome-mid: #0a2135;
   --chrome-end: #061522;
   --chrome-gradient: linear-gradient(100deg, var(--chrome) 0%, var(--chrome-mid) 48%, var(--chrome-end) 100%);
+  --chrome-header-gradient:
+    radial-gradient(ellipse 420px 140px at 0 0, rgba(78, 162, 216, 0.44) 0%, rgba(35, 104, 149, 0.2) 50%, transparent 100%),
+    var(--chrome-gradient);
   --ink-soft: #0d2032;
   --ink-raised: #132a40;
   --blue: #1f6aa5;
@@ -544,7 +547,7 @@ summary {
   left: 0;
   height: var(--header-height);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: var(--chrome-gradient);
+  background: var(--chrome-header-gradient);
   color: var(--white);
   backdrop-filter: blur(18px);
 }
