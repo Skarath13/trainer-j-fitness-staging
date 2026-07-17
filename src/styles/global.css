@@ -1,6 +1,9 @@
 :root {
   --ink: #071522;
-  --chrome: #0a2135;
+  --chrome: #123a59;
+  --chrome-mid: #0a2135;
+  --chrome-end: #061522;
+  --chrome-gradient: linear-gradient(100deg, var(--chrome) 0%, var(--chrome-mid) 48%, var(--chrome-end) 100%);
   --ink-soft: #0d2032;
   --ink-raised: #132a40;
   --blue: #1f6aa5;
@@ -541,7 +544,7 @@ summary {
   left: 0;
   height: var(--header-height);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 33, 53, 0.96);
+  background: var(--chrome-gradient);
   color: var(--white);
   backdrop-filter: blur(18px);
 }
@@ -568,16 +571,7 @@ summary {
   width: 52px;
   height: 46px;
   flex: 0 0 auto;
-  filter:
-    drop-shadow(0 0 7px rgba(109, 192, 255, 0.24))
-    drop-shadow(0 3px 7px rgba(0, 0, 0, 0.24))
-    saturate(1.12)
-    contrast(1.04)
-    brightness(1.04);
   object-fit: contain;
-  transition:
-    filter 420ms ease,
-    transform var(--motion-ui) var(--ease-out);
 }
 
 .brand-name {
@@ -716,13 +710,7 @@ summary {
   width: min(45vw, 660px, 70svh);
   height: auto;
   clip-path: inset(0);
-  filter:
-    drop-shadow(0 0 1px rgba(126, 204, 255, 0.42))
-    drop-shadow(0 0 14px rgba(57, 156, 229, 0.13))
-    drop-shadow(0 34px 45px rgba(0, 0, 0, 0.28))
-    saturate(1.05)
-    contrast(1.03)
-    brightness(1.12);
+  filter: drop-shadow(0 34px 45px rgba(0, 0, 0, 0.28)) saturate(1.05) contrast(1.02) brightness(1.12);
   animation: hero-image-enter 1250ms var(--ease-out) 120ms both;
 }
 
@@ -1545,16 +1533,6 @@ summary {
     color: var(--white);
   }
 
-  .brand:hover .brand-mark {
-    filter:
-      drop-shadow(0 0 10px rgba(109, 192, 255, 0.34))
-      drop-shadow(0 4px 9px rgba(0, 0, 0, 0.26))
-      saturate(1.16)
-      contrast(1.05)
-      brightness(1.07);
-    transform: translateY(-1px) scale(1.02);
-  }
-
   .program-card a:hover {
     color: var(--white);
   }
@@ -1625,7 +1603,7 @@ summary {
     align-items: stretch;
     padding: 1.25rem 24px 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: var(--chrome);
+    background: var(--chrome-gradient);
     box-shadow: 0 30px 50px rgba(0, 0, 0, 0.28);
     flex-direction: column;
     opacity: 0;
@@ -1784,13 +1762,7 @@ summary {
     right: -1rem;
     bottom: -0.9rem;
     width: min(74vw, 360px);
-    filter:
-      drop-shadow(0 0 1px rgba(126, 204, 255, 0.38))
-      drop-shadow(0 0 11px rgba(57, 156, 229, 0.11))
-      drop-shadow(0 26px 38px rgba(0, 0, 0, 0.22))
-      saturate(1.08)
-      contrast(1.02)
-      brightness(1.18);
+    filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.22)) saturate(1.08) contrast(1.01) brightness(1.18);
   }
 
   .hero-orbit {
