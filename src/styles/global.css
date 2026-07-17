@@ -552,8 +552,6 @@ summary {
   align-items: center;
   gap: 0.8rem;
   font-family: 'Archivo Variable', 'Arial Black', sans-serif;
-  font-weight: 760;
-  letter-spacing: -0.02em;
   text-decoration: none;
   animation: chrome-enter 680ms var(--ease-out) 40ms both;
 }
@@ -566,7 +564,10 @@ summary {
 }
 
 .brand-name {
-  font-size: 1rem;
+  font-size: clamp(1.06rem, calc(1vw + 0.5rem), 1.22rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
   white-space: nowrap;
 }
 
@@ -1725,10 +1726,6 @@ summary {
 
   .shell {
     width: min(calc(100% - 32px), var(--max-width));
-  }
-
-  .brand-name {
-    font-size: 0.92rem;
   }
 
   .hero {
