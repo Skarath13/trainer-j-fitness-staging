@@ -3,7 +3,12 @@
   const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
 
   const reveal = (element: HTMLElement) => {
+    element.dataset.revealed = 'true';
     element.classList.remove('reveal-pending');
+
+    window.setTimeout(() => {
+      element.dataset.revealed = 'settled';
+    }, 1300);
   };
 
   if (!reduceMotion.matches && 'IntersectionObserver' in window) {
