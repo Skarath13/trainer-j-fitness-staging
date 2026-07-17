@@ -1006,9 +1006,19 @@ a {
 }
 
 .footer-inner nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
   color: #bac8d2;
   font-size: 0.82rem;
+  line-height: 1.4;
   text-decoration: none;
+}
+
+.footer-inner nav .tabler-icon {
+  --icon-size: 1rem;
+  color: var(--blue-bright);
 }
 
 .footer-inner nav a:hover {
@@ -1375,7 +1385,9 @@ a {
 
   .footer-inner nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.75rem;
   }
 }
 
