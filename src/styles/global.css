@@ -34,7 +34,6 @@
 html {
   min-height: 100%;
   background: var(--ink);
-  color-scheme: light;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 24px);
 }
@@ -42,7 +41,7 @@ html {
 body {
   min-height: 100svh;
   margin: 0;
-  background: var(--paper);
+  background: var(--ink);
   color: var(--text);
   font-family: 'Manrope Variable', 'Segoe UI', sans-serif;
   font-size: 1rem;
