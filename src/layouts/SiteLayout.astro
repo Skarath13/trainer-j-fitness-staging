@@ -1,0 +1,83 @@
+---
+import '@fontsource-variable/archivo/wght.css';
+import '@fontsource-variable/manrope/wght.css';
+import '../styles/global.css';
+import { isStaging, withBase } from '../utils/paths';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = withBase('brand/trainer-j-social.jpg') } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const socialImage = Astro.site ? new URL(image, Astro.site) : undefined;
+const publicHome = Astro.site
+  ? new URL(withBase(), Astro.site)
+  : new URL(withBase(), Astro.url);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Trainer J Fitness',
+  url: publicHome.href,
+  email: 'Jacob@TrainerJFitness.com',
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Orange County, California',
+  },
+  founder: {
+    '@type': 'Person',
+    name: 'Jacob Hernandez',
+    honorificSuffix: 'M.S., ACE-CPT',
+  },
+  sameAs: ['https://instagram.com/trainerj.cpt'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Coaching services',
+    itemListElement: ['Private Training', 'Semi-Private Training', 'Online Coaching'].map(
+      (name) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name,
+        },
+      }),
+    ),
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#071522" />
+    <meta name="description" content={description} />
+    {isStaging && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href={withBase('favicon.ico')} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={withBase('favicon-32x32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={withBase('favicon-16x16.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('site.webmanifest')} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Trainer J Fitness" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <slot />
+  </body>
+</html>

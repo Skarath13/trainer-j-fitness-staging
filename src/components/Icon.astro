@@ -1,0 +1,29 @@
+---
+import certificate from '@tabler/icons/outline/certificate.svg?raw';
+import deviceLaptop from '@tabler/icons/outline/device-laptop.svg?raw';
+import dumbbell from '@tabler/icons/outline/dumbbell.svg?raw';
+import mapPin from '@tabler/icons/outline/map-pin.svg?raw';
+import school from '@tabler/icons/outline/school.svg?raw';
+import userCheck from '@tabler/icons/outline/user-check.svg?raw';
+import users from '@tabler/icons/outline/users.svg?raw';
+
+const icons = {
+  certificate,
+  'device-laptop': deviceLaptop,
+  dumbbell,
+  'map-pin': mapPin,
+  school,
+  'user-check': userCheck,
+  users,
+} as const;
+
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+const svg = icons[name].replace('<svg', '<svg aria-hidden="true" focusable="false"');
+---
+
+<span class:list={['tabler-icon', className]} aria-hidden="true" set:html={svg} />

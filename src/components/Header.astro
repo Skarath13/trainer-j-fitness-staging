@@ -1,0 +1,66 @@
+---
+import { withBase } from '../utils/paths';
+
+const bookingUrl = 'https://calendly.com/jacob-trainerjfitness/30min';
+const homeUrl = withBase();
+---
+
+<header class="site-header" data-site-header>
+  <div class="header-inner shell">
+    <a class="brand" href={homeUrl} aria-label="Trainer J Fitness home">
+      <img
+        class="brand-mark"
+        src={withBase('brand/trainer-j-mark.webp')}
+        alt=""
+        width="52"
+        height="46"
+        decoding="async"
+      />
+      <span class="brand-name">Trainer J Fitness</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      data-menu-toggle
+    >
+      <span class="menu-label">Menu</span>
+      <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+    </button>
+
+    <nav class="primary-navigation" id="primary-navigation" aria-label="Primary" data-menu>
+      <a href={withBase('#results')}>Results</a>
+      <a href={withBase('#coaching')}>Coaching</a>
+      <a href={withBase('#about')}>About Jacob</a>
+      <a href={withBase('#contact')}>Contact</a>
+      <a class="button button-small" href={bookingUrl} target="_blank" rel="noreferrer">
+        Book a free consult
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-menu]');
+
+  if (header instanceof HTMLElement && toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const closeMenu = () => {
+      header.dataset.open = 'false';
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      header.dataset.open = String(!isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+    window.matchMedia('(min-width: 901px)').addEventListener('change', closeMenu);
+  }
+</script>

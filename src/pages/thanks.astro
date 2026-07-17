@@ -1,0 +1,25 @@
+---
+import Header from '../components/Header.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { isStaging, withBase } from '../utils/paths';
+---
+
+<SiteLayout
+  title={isStaging ? 'Form preview | Trainer J Fitness' : 'Message received | Trainer J Fitness'}
+  description={isStaging
+    ? 'The Trainer J Fitness staging form does not send messages.'
+    : 'Your message was sent to Trainer J Fitness.'}
+>
+  <Header />
+  <main class="message-page" id="main-content">
+    <div class="shell message-card">
+      <h1>{isStaging ? 'Form preview complete.' : 'Your message is in.'}</h1>
+      <p>
+        {isStaging
+          ? 'No message was sent from this GitHub Pages staging site.'
+          : 'Thanks for reaching out. Jacob usually responds within 24 hours.'}
+      </p>
+      <a class="button" href={withBase()}>Back to the home page</a>
+    </div>
+  </main>
+</SiteLayout>

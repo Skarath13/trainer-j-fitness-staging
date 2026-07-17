@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import heroPhoto from '../assets/images/jacob-hero-cutout.png';
+
+const bookingUrl = 'https://calendly.com/jacob-trainerjfitness/30min';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-background" aria-hidden="true">
+    <div class="hero-orbit"></div>
+    <Image
+      src={heroPhoto}
+      alt=""
+      class="hero-background-image"
+      widths={[408, 600]}
+      sizes="(max-width: 680px) 78vw, 38vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+    />
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="hero-inner shell">
+    <div class="hero-copy">
+      <h1 id="hero-title">
+        <span>Build strength</span>
+        <span>you can trust.</span>
+      </h1>
+      <p class="hero-lead">
+        Maybe the gym feels intimidating, or you are tired of starting over. Jacob will show you
+        what to do, stay close while you learn, and help you build strength that lasts.
+      </p>
+      <p class="hero-location">
+        <Icon name="map-pin" />
+        <span>Personal training in Orange County.</span>
+      </p>
+      <div class="hero-actions">
+        <a class="button" href={bookingUrl} target="_blank" rel="noreferrer">Book a free consult</a>
+        <a class="text-link" href="#coaching"><span>See how coaching works</span></a>
+      </div>
+
+      <dl class="credential-strip" aria-label="Jacob Hernandez credentials">
+        <div>
+          <dt><Icon name="school" /><span>M.S.</span></dt>
+          <dd>Exercise Science</dd>
+        </div>
+        <div>
+          <dt><Icon name="certificate" /><span>ACE-CPT</span></dt>
+          <dd>Certified trainer</dd>
+        </div>
+        <div>
+          <dt><Icon name="user-check" /><span>3+ years</span></dt>
+          <dd>Coaching experience</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
