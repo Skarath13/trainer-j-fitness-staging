@@ -1,7 +1,7 @@
 # Trainer J Fitness site audit
 
-Audit date: July 16, 2026  
-Live site reviewed: [trainerjfitness.com](https://trainerjfitness.com/)  
+Audit date: July 16, 2026
+Live site reviewed: [trainerjfitness.com](https://trainerjfitness.com/)
 Scope: content, conversion, responsive UX, accessibility, performance, SEO, privacy, security posture, and implementation quality.
 
 ## Executive assessment
