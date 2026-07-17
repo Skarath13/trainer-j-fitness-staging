@@ -1947,7 +1947,7 @@ summary {
   }
 
   .hero-background-image {
-    top: calc(var(--header-height) + 0.75rem);
+    top: calc(var(--header-height) + 0.75rem - min(23vw, 7rem));
     bottom: auto;
     animation: hero-image-compact-enter 760ms ease-out 120ms both;
   }
