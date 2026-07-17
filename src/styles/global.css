@@ -16,10 +16,10 @@
   --radius-small: 10px;
   --radius-medium: 18px;
   --shadow: 0 30px 80px rgba(2, 15, 27, 0.16);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --motion-fast: 140ms;
-  --motion-ui: 180ms;
-  --motion-reveal: 240ms;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --motion-fast: 220ms;
+  --motion-ui: 320ms;
+  --motion-reveal: 760ms;
 }
 
 *,
@@ -124,33 +124,61 @@ summary {
 
 [data-reveal] {
   opacity: 1;
-  transition: opacity var(--motion-reveal) ease-out;
+  transform: none;
+  transition:
+    opacity calc(var(--motion-reveal) * 0.78) ease-out,
+    transform var(--motion-reveal) var(--ease-out);
 }
 
 [data-reveal].reveal-pending {
-  opacity: 0.9;
+  opacity: 0.28;
+  transform: translate3d(0, 28px, 0);
+  will-change: opacity, transform;
 }
 
-@keyframes subtle-enter {
+@keyframes page-enter {
   from {
-    opacity: 0.9;
+    opacity: 0.18;
+    transform: translate3d(0, 22px, 0);
   }
 }
 
 @keyframes hero-image-enter {
   from {
-    transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 28px, 0) scale(0.975);
+  }
+}
+
+@keyframes hero-message-enter {
+  from {
+    opacity: 0.08;
+    transform: translate3d(0, 32px, 0);
+  }
+}
+
+@keyframes hero-orbit-enter {
+  from {
+    opacity: 0.15;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes hero-credentials-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
   }
 }
 
 @keyframes faq-answer-enter {
   from {
-    opacity: 0.72;
+    opacity: 0.2;
+    transform: translate3d(0, 8px, 0);
   }
 }
 
 [data-page-enter] {
-  animation: subtle-enter var(--motion-reveal) var(--ease-out) both;
+  animation: page-enter var(--motion-reveal) var(--ease-out) both;
 }
 
 .section-heading {
@@ -221,7 +249,8 @@ summary {
   transition:
     background-color var(--motion-fast) ease,
     border-color var(--motion-fast) ease,
-    transform var(--motion-fast) var(--ease-out);
+    box-shadow var(--motion-ui) ease,
+    transform var(--motion-ui) var(--ease-out);
 }
 
 .button:active {
@@ -257,7 +286,7 @@ summary {
 
 .text-link::after {
   content: '→';
-  transition: transform var(--motion-fast) var(--ease-out);
+  transition: transform var(--motion-ui) var(--ease-out);
 }
 
 .site-header {
@@ -347,7 +376,7 @@ summary {
   height: 2px;
   border-radius: 2px;
   background: currentColor;
-  transition: transform var(--motion-fast) var(--ease-out);
+  transition: transform 260ms var(--ease-out);
 }
 
 .hero {
@@ -395,6 +424,7 @@ summary {
   box-shadow:
     0 0 0 90px rgba(109, 192, 255, 0.025),
     0 0 0 180px rgba(109, 192, 255, 0.02);
+  animation: hero-orbit-enter 1100ms var(--ease-out) 80ms both;
 }
 
 .hero-background-image {
@@ -405,7 +435,7 @@ summary {
   width: min(45vw, 660px, 70svh);
   height: auto;
   filter: drop-shadow(0 34px 45px rgba(0, 0, 0, 0.28)) saturate(1.05) contrast(1.02) brightness(1.12);
-  animation: hero-image-enter 380ms var(--ease-out) both;
+  animation: hero-image-enter 940ms var(--ease-out) 100ms both;
 }
 
 .hero-shade {
@@ -426,7 +456,10 @@ summary {
 
 .hero-copy {
   width: min(740px, 63%);
-  animation: subtle-enter 340ms var(--ease-out) both;
+}
+
+.hero-message {
+  animation: hero-message-enter 820ms var(--ease-out) 60ms both;
 }
 
 .hero h1 {
@@ -481,6 +514,7 @@ summary {
   padding: 1.2rem 0 0;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  animation: hero-credentials-enter 760ms var(--ease-out) 220ms both;
 }
 
 .credential-strip div {
@@ -562,6 +596,8 @@ summary {
 .transformation-image {
   width: 100%;
   height: auto;
+  transform: translateZ(0);
+  transition: transform 720ms var(--ease-out);
 }
 
 .transformation-copy h3,
@@ -638,6 +674,10 @@ summary {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-medium);
   background: var(--ink-raised);
+  transition:
+    border-color var(--motion-ui) ease,
+    box-shadow 480ms ease,
+    transform 480ms var(--ease-out);
 }
 
 .program-card h3 {
@@ -700,7 +740,7 @@ summary {
   margin-bottom: 1.6rem;
 }
 
-.about-copy > p {
+.about-body > p {
   max-width: 660px;
   margin: 0 0 2rem;
   color: #46596a;
@@ -807,6 +847,10 @@ summary {
   border: 1px solid var(--line);
   border-radius: var(--radius-medium);
   background: var(--white);
+  transition:
+    border-color var(--motion-ui) ease,
+    box-shadow 480ms ease,
+    transform 480ms var(--ease-out);
 }
 
 .voice-card blockquote {
@@ -886,7 +930,7 @@ summary {
   transform: translateY(-50%);
   transition:
     background-color var(--motion-fast) ease,
-    transform 180ms var(--ease-out);
+    transform var(--motion-ui) var(--ease-out);
 }
 
 .faq-item summary::before {
@@ -904,7 +948,7 @@ summary {
 }
 
 .faq-item[open] p {
-  animation: faq-answer-enter 160ms ease-out both;
+  animation: faq-answer-enter 360ms var(--ease-out) both;
 }
 
 .contact-section {
@@ -946,6 +990,14 @@ summary {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-medium);
   background: var(--ink-raised);
+  transition:
+    border-color var(--motion-ui) ease,
+    box-shadow 520ms ease;
+}
+
+.contact-form:focus-within {
+  border-color: rgba(109, 192, 255, 0.34);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
 }
 
 .honeypot {
@@ -1148,7 +1200,8 @@ summary {
 @media (hover: hover) and (pointer: fine) {
   .button:hover {
     background: #195886;
-    transform: translateY(-1px);
+    box-shadow: 0 18px 38px rgba(2, 15, 27, 0.24);
+    transform: translateY(-3px);
   }
 
   .button-dark:hover {
@@ -1156,7 +1209,7 @@ summary {
   }
 
   .text-link:hover::after {
-    transform: translateX(3px);
+    transform: translateX(6px);
   }
 
   .primary-navigation > a:not(.button):hover {
@@ -1167,6 +1220,22 @@ summary {
     color: var(--white);
   }
 
+  .program-card:hover {
+    border-color: rgba(109, 192, 255, 0.38);
+    box-shadow: 0 26px 54px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px);
+  }
+
+  .voice-card:hover {
+    border-color: rgba(31, 106, 165, 0.3);
+    box-shadow: 0 24px 48px rgba(2, 15, 27, 0.12);
+    transform: translateY(-6px);
+  }
+
+  .transformation-figure:hover .transformation-image {
+    transform: scale(1.018);
+  }
+
   .faq-item summary:hover {
     color: var(--blue);
   }
@@ -1174,7 +1243,6 @@ summary {
   .footer-inner nav a:hover {
     color: var(--white);
   }
-
 }
 
 @media (max-width: 1000px) {
@@ -1223,10 +1291,10 @@ summary {
     flex-direction: column;
     opacity: 0;
     pointer-events: none;
-    transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -10px, 0);
     visibility: hidden;
     transition:
-      opacity 140ms ease,
+      opacity 260ms ease,
       transform var(--motion-ui) var(--ease-out),
       visibility 0s linear var(--motion-ui);
   }
@@ -1321,7 +1389,11 @@ summary {
 
 @media (max-width: 680px) {
   :root {
-    --motion-reveal: 220ms;
+    --motion-reveal: 680ms;
+  }
+
+  [data-reveal].reveal-pending {
+    transform: translate3d(0, 20px, 0);
   }
 
   .section {
@@ -1570,5 +1642,6 @@ summary {
 
   [data-reveal] {
     opacity: 1 !important;
+    transform: none !important;
   }
 }

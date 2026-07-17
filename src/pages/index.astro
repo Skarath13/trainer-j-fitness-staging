@@ -259,27 +259,29 @@ const faqs = [
     </section>
 
     <section class="section about-section" id="about">
-      <div class="shell about-layout" data-reveal>
+      <div class="shell about-layout">
         <div class="about-copy">
           <SectionHeading
             title="A coach should push you and pay attention."
             intro="Jacob has a master's degree in exercise science and an ACE personal training certification. He pays attention to how you move, explains what matters, and adjusts the plan when your body or your week changes."
             align="left"
           />
-          <p>
-            You will be pushed, but you will also be heard. That balance matters when you are new to training, returning after time away, or carrying a history that makes exercise feel uncertain.
-          </p>
-          <a
-            class="button button-dark"
-            href={bookingUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Meet Jacob for 30 minutes
-          </a>
+          <div class="about-body" data-reveal>
+            <p>
+              You will be pushed, but you will also be heard. That balance matters when you are new to training, returning after time away, or carrying a history that makes exercise feel uncertain.
+            </p>
+            <a
+              class="button button-dark"
+              href={bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Meet Jacob for 30 minutes
+            </a>
+          </div>
         </div>
 
-        <dl class="credential-panel">
+        <dl class="credential-panel" data-reveal>
           <div>
             <dt><Icon name="school" /><span>Master's in Exercise Science</span></dt>
             <dd>Graduate-level study in biomechanics and program design.</dd>
@@ -353,14 +355,14 @@ const faqs = [
     </section>
 
     <section class="section faq-section" id="faq">
-      <div class="shell faq-layout" data-reveal>
+      <div class="shell faq-layout">
         <SectionHeading
           title="Questions before you start."
           intro="You are allowed to be unsure. Here are a few honest answers before you reach out."
           align="left"
         />
 
-        <div class="faq-list">
+        <div class="faq-list" data-reveal>
           {
             faqs.map((item, index) => (
               <details class="faq-item" open={index === 0}>
